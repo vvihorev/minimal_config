@@ -1,0 +1,133 @@
+set clipboard+=unnamedplus
+set nocompatible
+filetype plugin on
+syntax on
+
+" Tab set to two spaces
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set nowrap
+
+call plug#begin('~/.local/share/nvim/plugged')
+  " Colorscheme
+  Plug 'joshdick/onedark.vim'
+  Plug 'cocopon/iceberg.vim'
+
+  " LSP Support
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
+
+  " Autocompletion
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lua'
+
+  " Snippets
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'rafamadriz/friendly-snippets'
+
+  " LSP Setup
+  Plug 'VonHeikemen/lsp-zero.nvim'
+
+  " Commodities
+  "Plug 'morhetz/gruvbox'
+  Plug 'vimwiki/vimwiki'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'scrooloose/nerdcommenter'
+call plug#end()
+
+try
+  set signcolumn=yes
+  set termguicolors
+  "colorscheme onedark
+  colorscheme iceberg
+  "set background=light
+catch
+  " do nothing
+endtry
+
+lua <<EOF
+local lsp = require('lsp-zero')
+
+lsp.preset('recommended')
+
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+})
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings,
+  completion = {autocomplete = true}
+})
+
+lsp.setup()
+EOF
+
+set number relativenumber
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
+set incsearch
+set nohlsearch
+set encoding=utf-8
+
+set ttimeoutlen=0
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖХЪ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:{},фисвуапршолдьтщзйкыегмцчняхъ;abcdefghijklmnopqrstuvwxyz[]
+let mapleader = "\<Space>"
+
+"Theme settings
+"set termguicolors
+"colorscheme gruvbox
+"set background=dark
+"hi Normal guibg=None
+
+
+nnoremap <F2> :w<CR>
+nnoremap <F3> :set hlsearch!<CR>
+nnoremap <Leader>ec :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>t :NERDTree<CR>
+nnoremap <Leader>vv :vsplit<CR><Cmd>wincmd w<CR>
+nnoremap <Leader>vt <Cmd>vsplit<CR><Cmd>wincmd w<CR><Cmd>terminal<CR>i
+nnoremap <Leader>s :split<CR><Cmd>wincmd w<CR>
+"inoremap jk <esc>
+"inoremap гш <esc>
+nnoremap <Leader>h :wincmd h<CR>
+nnoremap <Leader>l :wincmd l<CR>
+nnoremap <Leader>j :wincmd j<CR>
+nnoremap <Leader>k :wincmd k<CR>
+
+nnoremap <Leader>р :wincmd h<CR>
+nnoremap <Leader>д :wincmd l<CR>
+nnoremap <Leader>о :wincmd j<CR>
+nnoremap <Leader>л :wincmd k<CR>
+
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>gf :cd %:p:h<CR>
+nnoremap <Leader>gh :cd<CR>
+nnoremap <Leader>gg :Neogit<CR>
+" Go to transparent background
+nnoremap <Leader>gt :hi normal guibg=000000<CR>
+
+nnoremap <Leader>Rc <Cmd>w<CR><Cmd>!cc % -o %:r && ./%:r<CR>
+nnoremap <Leader>Rp <Cmd>w<CR><Cmd>!python3 %<CR>
+nnoremap <Leader>Rr <Cmd>w<CR><Cmd>!racket %<CR>
+nnoremap <Leader>L <Cmd>!grep -E "class\|def" %<CR>
+nnoremap <Leader>fs <Cmd>:w<CR>
+nnoremap <Leader>аы <Cmd>:w<CR>
+nnoremap <Leader>fj <Cmd>%!python3 -m json.tool --no-ensure-ascii<CR>
+
+" mappings for question answers in markdown in russian
+nnoremap бс a ``<Esc>i
+nnoremap би a<CR>```python<CR>```<Esc>O
+nnoremap ,c a ``<Esc>i
+nnoremap ,b a<CR>```python<CR>```<Esc>O
+"nnoremap бч :%y+<CR>:%d<CR>
