@@ -13,3 +13,5 @@ Install Node for Coc.nvim:
 Install lsp for python:
 
     :CocInstall coc-pyright
+    
+Oh-my-zsh with bira, zsh-autosuggestions and compleat
