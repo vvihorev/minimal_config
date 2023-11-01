@@ -55,6 +55,11 @@ lfcd () {
 bindkey -s '^o' '^ulfcd\n'
 
 function bj () {
+    if [ -x "$(command -v fzf)" ]; then
+        cd $(cat ~/.local/share/bm-dirs | fzf)
+        return
+    fi
+
     awk '{printf "%d\t%s\n", NR, $0}' < ~/.local/share/bm-dirs
 
     echo -n "Jump to: "
@@ -74,10 +79,18 @@ function bm () {
 }
 
 alias jt='cd $(find ~/code -type d -maxdepth 1 -print | fzf) && nvim .'
+alias mbd='nvim ~/.local/share/bm-dirs'
 alias bd='vi ~/.local/share/bm-dirs'
+
 alias vw='cd ~/Sync/vvihorev-vault && nvim index.md'
 alias v="nvim"
+
 alias findf="find . -type f -name"
+
 alias emc="emacsclient --no-wait --create-frame"
 alias em="emacsclient -t -a ''"
 alias emd="emacs --daemon"
+
+alias penv="source virtualenv/bin/activate"
+
+alias rotate-wacom="xsetwacom set $(xsetwacom list | grep stylus | awk '{ print $9 }') rotate half"
