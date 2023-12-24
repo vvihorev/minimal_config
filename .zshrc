@@ -78,7 +78,8 @@ function bm () {
     pwd >> ~/.local/share/bm-dirs
 }
 
-alias jt='cd $(find ~/code -type d -maxdepth 1 -print | fzf) && nvim .'
+# alias jt='cd $(find ~/code -type d -maxdepth 1 -print | fzf) && nvim .'
+alias jt='cd $(( find ~/code -maxdepth 1 -type d -print; find ~/code/_* -maxdepth 1 -type d -print ) | cat | fzf) && nvim .'
 alias mbd='nvim ~/.local/share/bm-dirs'
 alias bd='vi ~/.local/share/bm-dirs'
 
