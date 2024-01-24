@@ -1,0 +1,56 @@
+import = [
+  # "~/.config/alacritty/themes/themes/alabaster_dark.toml"
+  # "~/.config/alacritty/themes/themes/ayu_dark.toml"
+  # "~/.config/alacritty/themes/themes/night_owlish_light.toml"
+  # "~/.config/alacritty/themes/themes/solarized_light.toml"
+]
+
+[font]
+# size = 8.5
+size = 9.5
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "U"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "D"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[window]
+# decorations = "None"
+# opacity = 0.9
+opacity = 0.95
+title = "Terminal"
+
+[window.dimensions]
+columns = 140
+lines = 50
+
+[window.position]
+x = 0
+y = 0

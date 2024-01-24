@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LOCATION=~/Sync/vvihorev-vault/img
+FILE=$(date +"%H-%M_%d-%m-%Y")_screenshot.png
+xclip -selection clipboard -t image/png -o > $LOCATION/$FILE && echo $FILE
