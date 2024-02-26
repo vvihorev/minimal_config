@@ -86,3 +86,4 @@ vim.keymap.set('n', '<leader>p', 'i![](./img/<ESC>:r!scrshooter<CR>A)<ESC>kJx0f[
 
 -- Remote sync functionality
 vim.keymap.set('n', '<leader>rs', ':w<CR>:!./sync.sh<CR>', { desc = '[R]emote [S]ync' })
+vim.keymap.set('n', '<leader>rf', ':w<CR>:!./sync.sh<CR>', { desc = '[R]emote sync [F]rom remote' })

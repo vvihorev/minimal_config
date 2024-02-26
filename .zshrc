@@ -74,6 +74,15 @@ function bj () {
     cd $dir
 }
 
+function bjb () {
+    if [ -x "$(command -v fzf)" ]; then
+        DIR=$(cat ~/.local/share/bm-dirs | fzf)
+        cd "$DIR" && tmux new-session -d -s "$DIR" && tmux send-keys -t "$DIR" "nvim ." C-m && tmux attach -t "$DIR"
+        return
+    fi
+    echo "fzf is required to use 'bjb'"
+}
+
 function bm () {
     pwd >> ~/.local/share/bm-dirs
 }

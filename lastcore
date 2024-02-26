@@ -1,0 +1,4 @@
+#!/bin/bash
+
+CORE_NAME=$(ls -t /var/lib/systemd/coredump | head -n 1)
+cp /var/lib/systemd/coredump/$CORE_NAME . && zstd --decompress $CORE_NAME && rm $CORE_NAME
